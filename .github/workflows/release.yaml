@@ -1,0 +1,39 @@
+---
+name: Release
+
+# Attaches keep_screen_on.zip to every published GitHub release.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and upload plugin zip
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⤵️ Check out code from GitHub
+        uses: actions/checkout@v4
+
+      - name: 🔎 Check tag matches manifest version
+        run: |
+          VERSION=$(python3 -c "import json; print(json.load(open('custom_plugins/keep_screen_on/manifest.json'))['version'])")
+          TAG="${GITHUB_REF_NAME#v}"
+          if [ "$VERSION" != "$TAG" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match manifest version $VERSION"; exit 1
+          fi
+
+      - name: 🧪 Run tests
+        run: |
+          pip install flask
+          python3 tests/test_plugin.py
+
+      - name: 📦 Build zip
+        run: bash scripts/build_zip.sh
+
+      - name: ⬆️ Upload to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" dist/keep_screen_on.zip --clobber
