@@ -3,11 +3,12 @@
     "name": "Keep Screen On",
     "author": "Tim Smeets",
     "description": "Adds a floating button to every page that keeps your phone or tablet screen awake while you fly (NoSleep.js, works over plain HTTP).",
-    "documentation_uri": "https://github.com/YOUR_GITHUB_USER/rotorhazard-keep-screen-on",
-    "info_uri": "https://github.com/YOUR_GITHUB_USER/rotorhazard-keep-screen-on",
+    "documentation_uri": "https://github.com/ikilledmypc/rotorhazard-keep-screen-on#README",
+    "info_uri": "https://github.com/ikilledmypc/rotorhazard-keep-screen-on",
+    "author_uri": "https://github.com/ikilledmypc",
     "license": "MIT",
-    "license_uri": "https://opensource.org/licenses/MIT",
+    "license_uri": "https://github.com/ikilledmypc/rotorhazard-keep-screen-on/blob/main/LICENSE",
     "dependencies": [],
     "required_rhapi_version": "1.1",
-    "version": "1.0.0"
+    "version": "1.0.1"
 }
